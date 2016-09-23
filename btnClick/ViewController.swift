@@ -11,23 +11,24 @@ import UserNotifications
 
 class ViewController: UIViewController {
     private var myButton: UIButton!
+    private var myProgressView: UIProgressView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
                 // ボタンをViewに追加.
         noficationAction()
-      
+ 
        
         progress()
         
-       
-
-    }
-    func makeButton(){
-        myButton = UIButton()
+        Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(ViewController.onUpdate(timer:)), userInfo: nil, repeats: true)
         
-       
+                 }
+    func makeButton(){
+        
+        myButton = UIButton()
+
         
         // ボタンのサイズ.
         let bWidth: CGFloat = 200
@@ -65,7 +66,6 @@ class ViewController: UIViewController {
         myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(sender:)), for: .touchUpInside)
         
          self.view.addSubview(myButton)
-        myButton.isEnabled = false
         
            }
 
@@ -104,7 +104,10 @@ class ViewController: UIViewController {
     }
     func progress(){
         // ProgressViewを作成する.
-        let myProgressView: UIProgressView = UIProgressView(frame: CGRect(x:0, y:0, width:200, height:10))
+        
+        myProgressView = UIProgressView()
+        
+        myProgressView = UIProgressView(frame: CGRect(x:0, y:0, width:200, height:10))
         myProgressView.progressTintColor = UIColor.green
         myProgressView.trackTintColor = UIColor.white
         
@@ -120,17 +123,26 @@ class ViewController: UIViewController {
         
         // アニメーションを付ける.
         myProgressView.setProgress(1.0, animated: true)
-        if( myProgressView.progress == 1.0){
-            print(myProgressView.progress);
-        
-            //
-            
-            
-
-             makeButton()
-        }        // Viewに追加する.
+     
         self.view.addSubview(myProgressView)
+        if( myProgressView.progress == 8.0){
+            print(myProgressView.progress);
+            
+            
+            //
+     
+            
+                   }        // Viewに追加する.
     
+    }
+     func onUpdate(timer : Timer){
+        self.myProgressView.removeFromSuperview()
+                      makeButton()
+
+        
+    }
+    func testTime(timer:Timer){
+      
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
