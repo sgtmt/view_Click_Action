@@ -9,21 +9,47 @@
 import UIKit
 
 class SecondViewController:UIViewController {
-  
+   private var mySystemButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         self.view.backgroundColor = UIColor.green
         
+         mySystemButton = UIButton(type: .system)
+        // ボタンの位置を指定する
         
+        // Systemボタンのサイズ.
+        let sWidth: CGFloat = 200
+        let sHeight: CGFloat = 50
+        // Systemボタンの配置するx,y座標
+        let sposX: CGFloat = self.view.frame.width/2 - sWidth/2
+        let sposY: CGFloat = 250
+        
+        // Systemボタンに配置するx,y座標とサイズを設定.
+        mySystemButton.frame = CGRect(x: sposX, y: sposY, width: sWidth, height: sHeight)
+        
+        // Systemボタンにタイトルを設定する.
+        mySystemButton.setTitle("MySystemButton", for: .normal)
+    
+        mySystemButton.addTarget(self, action: #selector(SecondViewController.onClickMyButton(sender:)), for: .touchDown)
+        
+        self.view.addSubview(mySystemButton)
+       
     }
-
-
-        // Do any additional setup after loading the view.
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+     internal func onClickMyButton(sender: UIButton) {
+        let mySecondViewController: UIViewController = ViewController()
+        
+        // アニメーションを設定する.
+        mySecondViewController.modalTransitionStyle = .partialCurl
+        
+        
+        // Viewの移動する.
+        self.present(mySecondViewController, animated: true, completion: nil)
     }
     
 
