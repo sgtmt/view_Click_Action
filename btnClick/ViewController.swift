@@ -22,9 +22,9 @@ class ViewController: UIViewController {
        
         progress()
         
-        Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(ViewController.onUpdate(timer:)), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 7.2, target: self, selector: #selector(ViewController.onUpdate(timer:)), userInfo: nil, repeats: true)
         
-                 }
+                  }
     func makeButton(){
         
         myButton = UIButton()
@@ -141,9 +141,7 @@ class ViewController: UIViewController {
 
         
     }
-    func testTime(timer:Timer){
-      
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
